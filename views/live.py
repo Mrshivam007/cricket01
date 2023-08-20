@@ -186,28 +186,34 @@ def get_live_matches():
                             if team2_wickets == 10:
                                 team2_estimated_run = team2_runs
 
-                            team1_overs_left = 10 - team1_overs
-                            team2_overs_left = 10 - team2_overs
+                            if team1_overs is None:
+                                team1_overs_left = 20
+                            else:
+                                team1_overs_left = 20 - team1_overs
+
+                            if team2_overs is None:
+                                team2_overs_left = 20
+                            else:
+                                team2_overs_left = 20 - team2_overs
 
                             team1_finalScore = team1_runs + team1_overs_left * \
-                                (11 - (team1_wicket * 0.1)
+                                (11 - (team1_wickets * 0.1)
                                  ) if team1_runs is not None else None
                             team2_finalScore = team2_runs + \
                                 team2_overs_left * \
-                                (7 - (team1_wicket * 0.1)
+                                (7 - (team2_wickets * 0.1)
                                  ) if team2_runs is not None else None
-                            
 
                             team_winning = ""
                             if team1_finalScore is not None and team1_finalScore is not None:
-                                if team1_overs == 20 or team1_wicket == 10:
+                                if team1_overs == 20 or team1_wickets == 10:
                                     if team1_runs > team2_finalScore:
                                         team_winning = team1_name + " will win"
                                     elif team1_runs < team2_finalScore:
                                         team_winning = team2_name + " will win"
                                     else:
                                         team_winning = "Should Wait"
-                                elif team2_overs == 20 or team2_wicket == 10:
+                                elif team2_overs == 20 or team2_wickets == 10:
                                     if team2_runs > team1_finalScore:
                                         team_winning = team2_name + " will win"
                                     elif team2_runs < team1_finalScore:
