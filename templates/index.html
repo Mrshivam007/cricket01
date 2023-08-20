@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Cricet Prediction App</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/fontawesome.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/templatemo-cyborg-gaming.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/owl.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/animate.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+
+    <!-- <link rel="stylesheet" href="assets/css/templatemo-cyborg-gaming.css" />
+    <link rel="stylesheet" href="assets/css/owl.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+    <!--
+
+TemplateMo 579 Cyborg Gaming
+
+https://templatemo.com/tm-579-cyborg-gaming
+
+-->
+  </head>
+
+  <body style="background-color: #1f2122; font-family: 'Poppins', sans-serif">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="index.html" class="logo">
+                <img src="../static/images/logo.png" alt="" />
+              </a>
+              <!-- ***** Logo End ***** -->
+              <!-- ***** Search End ***** -->
+              <div class="search-input">
+                <form id="search" action="#">
+                  <input
+                    type="text"
+                    placeholder="Type Something"
+                    id="searchText"
+                    name="searchKeyword"
+                    onkeypress="handle"
+                  />
+                  <i class="fa fa-search"></i>
+                </form>
+              </div>
+              <!-- ***** Search End ***** -->
+              <!-- ***** Menu Start ***** -->
+              <ul class="nav">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="details.html">Details</a></li>
+                <li><a href="streams.html">Streams</a></li>
+                <li>
+                  <a href="profile.html"
+                    >Profile
+                    <img src="../static/images/profile-header.jpg" alt=""
+                  /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <!-- ***** Banner Start ***** -->
+            <div class="main-banner">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="header-text">
+                    <h6>Welcome To Cyborg</h6>
+                    <h4>
+                      View <em>Live Matches</em> Score and Prediction For Free
+                    </h4>
+                    <div class="main-button">
+                      <a href="browse.html">View Matches</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Banner End ***** -->
+
+            <!-- ***** Most Popular Start ***** -->
+            <div class="most-popular">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="heading-section">
+                    <h4><em>Live Matches</em> Right Now</h4>
+                  </div>
+                  <div class="row">
+                    {% for match in matches %}
+                    <div class="col-lg-4 col-sm-4">
+                      <div class="item">
+                        <p style="color: white; font-weight: bold">
+                          {{ match.team1 }} vs {{ match.team2 }} {{
+                          match.matchType }}
+                        </p>
+                        <h4>
+                          <i class="fa fa-star"></i>{{ match.team1 }}
+                          <span
+                            style="
+                              color: white;
+                              float: right;
+                              margin-bottom: 1rem;
+                              margin-top: 0px;
+                              font-weight: bold;
+                            "
+                          >
+                            {{ match.team1Score }}</span
+                          >
+                        </h4>
+                        <p style="margin-bottom: 0rem;">Run Rate: {{ match.team1RunRate }}</p>
+                        <p style="margin-bottom: 0rem;">Calculated Run Rate: {{ match.team1CalculatedRunRate }}</p>
+                        <p>Estimated Run: {{ match.team1EstimatedRun }}</p>
+                        <h4>
+                          <i class="fa fa-star"></i>{{ match.team2 }}
+                          <span
+                          style="
+                              color: white;
+                              float: right;
+                              margin-bottom: 1rem;
+                              margin-top: 0px;
+                              font-weight: bold;
+                              "
+                            >{{ match.team2Score }}</span
+                            >
+                          </h4>
+                          <p style="margin-bottom: 0rem;">Run Rate: {{ match.team2RunRate }}</p>
+                          <p style="margin-bottom: 0rem;">Calculated Run Rate: {{ match.team2CalculatedRunRate }}</p>
+                          <p>Estimated Run: {{ match.team2EstimatedRun }}</p>
+                        <!-- <ul style="margin-top: -154px">  
+                          <li style="padding-bottom: 64px">
+                            {{ match.team1Score }}
+                          </li>
+                          <li>{{ match.team2Score }}</li>
+                        </ul> -->
+                        <p style="color: white; font-weight: bold">
+                          {{ match.teamWinning }}
+                        </p>
+                        <p>{{ match.status }}</p>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    <div class="col-lg-12">
+                      <div class="main-button">
+                        <a href="browse.html">Load More Matches</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="most-popular">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="heading-section">
+                    <h4><em>Today </em> Upcomming Matches</h4>
+                  </div>
+                  <div class="row">
+                    {% for match in today_upcomming_match %}
+                    <div class="col-lg-4 col-sm-4">
+                      <div class="item">
+                        <p style="color: white; font-weight: bold">
+                          {{ match.team1 }} vs {{ match.team2 }} {{
+                          match.matchType }}
+                        </p>
+                        <h4>
+                          <i class="fa fa-star"></i>{{ match.team1 }}
+                          <span
+                            style="
+                              color: white;
+                              float: right;
+                              margin-top: 0px;
+                              font-weight: bold;
+                            "
+                          >
+                            {{ match.team1Score }}</span
+                          >
+                        </h4>
+                        <p>Run Rate: {{ match.team1RunRate }}</p>
+                        <h4>
+                          <i class="fa fa-star"></i>{{ match.team2 }}
+                          <span
+                            style="
+                              color: white;
+                              float: right;
+                              margin-top: 0px;
+                              font-weight: bold;
+                            "
+                            >{{ match.team2Score }}</span
+                          >
+                        </h4>
+                        <p>Run Rate: {{ match.team2RunRate }}</p>
+                        <!-- <ul style="margin-top: -154px">  
+                          <li style="padding-bottom: 64px">
+                            {{ match.team1Score }}
+                          </li>
+                          <li>{{ match.team2Score }}</li>
+                        </ul> -->
+                        <p style="color: white; font-weight: bold">
+                          {{ match.teamWinning }}
+                        </p>
+                        <p>{{ match.status }}</p>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    <div class="col-lg-12">
+                      <div class="main-button">
+                        <a href="browse.html">Load More Matches</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Most Popular End ***** -->
+
+            <!-- ***** Gaming Library Start ***** -->
+            <div class="gaming-library">
+              <div class="col-lg-12">
+                <div class="heading-section">
+                  <h4><em>Live Matches</em> Prediction Table</h4>
+                </div>
+                {% for match in matches %}
+                <div class="item">
+                  <ul style="padding-left: 0px;">
+                    <li>
+                      <h4>{{ match.matchType }}</h4>
+                      <span>{{ match.team1 }} vs {{ match.team2 }}</span>
+                    </li>
+                    <li>
+                      <h4>{{ match.team1 }}</h4>
+                      <span>{{ match.estimatedTeam1RunOver }}</span>
+                    </li>
+                    <li>
+                      <h4>{{ match.team2 }}</h4>
+                      <span>{{ match.estimatedTeam2RunOver }}</span>
+                    </li>
+                    <li>
+                      <div class="main-border-button">
+                        <a href="#">More Details</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                {% endfor %}
+              </div>
+              <div class="col-lg-12">
+                <div class="main-button">
+                  <a href="profile.html">View Match Prediction</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="gaming-library">
+              <div class="col-lg-12">
+                <div class="heading-section">
+                  <h4><em>All Upcoming</em> Matches</h4>
+                </div>
+                {% for match in upcomming_match %}
+                <div class="item">
+                  <ul style="padding-left: 0px;">
+                    <li>
+                      <h4>{{ match.matchType }}</h4>
+                      <span>{{ match.team1 }} vs {{ match.team2 }}</span>
+                    </li>
+                    <li>
+                      <h4>{{ match.status }}</h4>
+                      <!-- <span>{{ match.estimatedTeam1RunOver }}</span> -->
+                    </li>
+                    <li>
+                      <h4>{{ match.matchStatus }}</h4>
+                      <!-- <span>{{ match.estimatedTeam2RunOver }}</span> -->
+                    </li>
+                    <li>
+                      <h4>{{ match.matchDate }}</h4>
+                      <!-- <span>{{ match.estimatedTeam2RunOver }}</span> -->
+                    </li>
+                    <!-- <li>
+                      <div class="main-border-button">
+                        <a href="#">More Details</a>
+                      </div>
+                    </li> -->
+                  </ul>
+                </div>
+                {% endfor %}
+              </div>
+              <div class="col-lg-12">
+                <div class="main-button">
+                  <a href="profile.html">View Match Prediction</a>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Gaming Library End ***** -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+
+    <script src="{{ url_for('static', filename='js/isotope.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl-carousel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
